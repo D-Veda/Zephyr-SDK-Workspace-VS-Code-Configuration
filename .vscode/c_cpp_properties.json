@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "ARM",
+            "compileCommands": [
+                "${workspaceFolder}/build/compile_commands.json"
+            ],
+            "compilerPath": "${userHome}/zephyr-sdk-${zephyr_sdk_version}/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe",
+            "cStandard": "c99",
+            "cppStandard": "c++11"
+        }
+    ],
+    "env": {
+        "zephyr_sdk_version": "0.17.0"
+    },
+    "version": 4
+}
