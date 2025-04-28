@@ -7,26 +7,22 @@
             "label": "clean",
             "type": "shell",
             "group": "build",
-            "windows": {
-                "command": "rm"
-            },
+            "command": "rm",
             "args": [
                 "build",
                 "-Recurse",
-                "-Force"
+                "-Force",
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
             },
-            "detail": "Clean project of Zephyr SDK for VSCode."
+            "detail": "Clean project of Zephyr SDK for VSCode.",
         },
         {
             "label": "build",
             "type": "shell",
             "group": "build",
-            "windows": {
-                "command": "${workspaceFolder}/.venv/Scripts/west.exe"
-            },
+            "command": "${workspaceFolder}/.venv/Scripts/west.exe",
             "args": [
                 "build",
                 "-p",
@@ -34,48 +30,51 @@
                 "-b",
                 "${input:zephyr_board_name}",
                 "${input:zephyr_sample_dir}",
-                "--pristine"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
             },
             "detail": "Build project of Zephyr SDK for VSCode.",
-            "problemMatcher": [],
         },
         {
             "label": "flash",
             "type": "shell",
             "group": "build",
-            "windows": {
-                "command": "${workspaceFolder}/.venv/Scripts/west.exe"
-            },
+            "command": "${workspaceFolder}/.venv/Scripts/west.exe",
             "args": [
-                "flash"
+                "flash",
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
             },
-            "detail": "Flash project of Zephyr SDK for VSCode."
-        }
+            "detail": "Flash project of Zephyr SDK for VSCode.",
+        },
     ],
     "inputs": [
         {
             "id": "zephyr_sample_dir",
-            "type": "promptString",
+            "type": "pickString",
             "description": "Please input the directory of the project.",
             "default": "application/firmware",
+            "options": [
+                "application/firmware",
+                "application/chryusb/hid_mouse",
+            ],
         },
         {
             "id": "zephyr_board_name",
-            "type": "promptString",
+            "type": "pickString",
             "description": "Please input name of the supported board.",
             "default": "frdm_mcxn236",
+            "options": [
+                "frdm_mcxn236",
+            ],
         },
         {
             "id": "zephyr_build_dir",
             "type": "promptString",
             "description": "Please input build directory.",
             "default": "build",
-        }
-    ]
+        },
+    ],
 }

@@ -1,7 +1,8 @@
 {
-    "cmake.configureOnOpen": false,
     "files.associations": {
         "stdio.h": "c",
-        "kernel.h": "c"
+        "kernel.h": "c",
+        "gpio.h": "c",
+        "limits": "c"
     },
 }

@@ -7,7 +7,8 @@
             ],
             "compilerPath": "${userHome}/zephyr-sdk-${zephyr_sdk_version}/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe",
             "cStandard": "c99",
-            "cppStandard": "c++11"
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "env": {

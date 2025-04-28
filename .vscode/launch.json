@@ -1,0 +1,106 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "arm-zephyr-eabi-gdb (LinkServer) Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "targetArchitecture": "arm",
+            "debugServerPath": "LinkServer.exe",
+            "debugServerArgs": "gdbserver ${input:linkserver_device} -c ${input:linkserver_device_core} --gdb-port 3333",
+            "miDebuggerPath": "${userHome}/zephyr-sdk-${input:zephyr_sdk_version}/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb.exe",
+            "miDebuggerArgs": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "customLaunchSetupCommands": [
+                {
+                    "text": "target remote localhost:3333",
+                },
+                {
+                    "text": "monitor reset"
+                },
+                {
+                    "text": "load"
+                },
+                {
+                    "text": "monitor reset"
+                },
+                {
+                    "text": "break main"
+                },
+            ],
+            "svdPath": "${input:svd_path}",
+        },
+        {
+            "name": "arm-zephyr-eabi-gdb (LinkServer) Attach",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "targetArchitecture": "arm",
+            "debugServerPath": "LinkServer.exe",
+            "debugServerArgs": "gdbserver ${input:linkserver_device} -c ${input:linkserver_device_core} --gdb-port 3333 -a",
+            "miDebuggerPath": "${userHome}/zephyr-sdk-${input:zephyr_sdk_version}/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb.exe",
+            "miDebuggerArgs": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "customLaunchSetupCommands": [
+                {
+                    "text": "target remote localhost:3333"
+                },
+            ],
+            "svdPath": "${input:svd_path}",
+        },
+    ],
+    "inputs": [
+        {
+            "id": "zephyr_sdk_version",
+            "type": "pickString",
+            "description": "Zephyr SDK Version",
+            "default": "0.17.0",
+            "options": [
+                "0.17.0",
+            ]
+        },
+        {
+            "id": "linkserver_device",
+            "type": "pickString",
+            "description": "LinkServer Target Device",
+            "options": [
+                "MCXN235",
+                "MCXN236",
+                "MCXN546",
+                "MCXN547",
+                "MCXN946",
+                "MCXN947",
+            ]
+        },
+        {
+            "id": "linkserver_device_core",
+            "type": "pickString",
+            "description": "LinkServer Target Device Core",
+            "default": "primary",
+            "options": [
+                "primary",
+                "all",
+                "cm33",
+                "cm33_core0",
+                "cm33_core1",
+                "cm4",
+                "cm7",
+            ]
+        },
+        {
+            "id": "svd_path",
+            "type":"promptString",
+            "description": "Target Device/Core SVD Path",
+        }
+    ]
+}
